@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.appraise.appraise_model.mapper.TCCValuestandDAO">
+  <resultMap id="BaseResultMap" type="com.example.demo.appraise.appraise_model.model.TCCValuestand">
+    <id column="ValueCode" jdbcType="VARCHAR" property="valuecode" />
+    <result column="TargetName" jdbcType="VARCHAR" property="targetname" />
+    <result column="ValueName" jdbcType="VARCHAR" property="valuename" />
+    <result column="Upper_Limit" jdbcType="VARCHAR" property="upperLimit" />
+    <result column="Low_Limit" jdbcType="VARCHAR" property="lowLimit" />
+    <result column="ScoreValue" jdbcType="VARCHAR" property="scorevalue" />
+    <result column="BICKID" jdbcType="VARCHAR" property="bickid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ValueCode, TargetName, ValueName, Upper_Limit, Low_Limit, ScoreValue, BICKID
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCValuestandExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_c_valuestand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_c_valuestand
+    where ValueCode = #{valuecode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_c_c_valuestand
+    where ValueCode = #{valuecode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCValuestandExample">
+    delete from t_c_c_valuestand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="ValueCode" keyProperty="valuecode" parameterType="com.example.demo.appraise.appraise_model.model.TCCValuestand" useGeneratedKeys="true">
+    insert into t_c_c_valuestand (ValueCode, TargetName, ValueName, Upper_Limit,
+      Low_Limit, ScoreValue, BICKID
+      )
+    values (#{valuecode,jdbcType=VARCHAR}, #{targetname,jdbcType=VARCHAR}, #{valuename,jdbcType=VARCHAR}, #{upperLimit,jdbcType=VARCHAR},
+      #{lowLimit,jdbcType=VARCHAR}, #{scorevalue,jdbcType=VARCHAR}, #{bickid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ValueCode" keyProperty="valuecode" parameterType="com.example.demo.appraise.appraise_model.model.TCCValuestand" useGeneratedKeys="true">
+    insert into t_c_c_valuestand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="targetname != null">
+        TargetName,
+      </if>
+      <if test="valuename != null">
+        ValueName,
+      </if>
+      <if test="upperLimit != null">
+        Upper_Limit,
+      </if>
+      <if test="lowLimit != null">
+        Low_Limit,
+      </if>
+      <if test="scorevalue != null">
+        ScoreValue,
+      </if>
+      <if test="bickid != null">
+        BICKID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="targetname != null">
+        #{targetname,jdbcType=VARCHAR},
+      </if>
+      <if test="valuename != null">
+        #{valuename,jdbcType=VARCHAR},
+      </if>
+      <if test="upperLimit != null">
+        #{upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="lowLimit != null">
+        #{lowLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="scorevalue != null">
+        #{scorevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="bickid != null">
+        #{bickid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCValuestandExample" resultType="java.lang.Long">
+    select count(*) from t_c_c_valuestand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_c_c_valuestand
+    <set>
+      <if test="record.valuecode != null">
+        ValueCode = #{record.valuecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetname != null">
+        TargetName = #{record.targetname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valuename != null">
+        ValueName = #{record.valuename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upperLimit != null">
+        Upper_Limit = #{record.upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lowLimit != null">
+        Low_Limit = #{record.lowLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scorevalue != null">
+        ScoreValue = #{record.scorevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bickid != null">
+        BICKID = #{record.bickid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_c_c_valuestand
+    set ValueCode = #{record.valuecode,jdbcType=VARCHAR},
+      TargetName = #{record.targetname,jdbcType=VARCHAR},
+      ValueName = #{record.valuename,jdbcType=VARCHAR},
+      Upper_Limit = #{record.upperLimit,jdbcType=VARCHAR},
+      Low_Limit = #{record.lowLimit,jdbcType=VARCHAR},
+      ScoreValue = #{record.scorevalue,jdbcType=VARCHAR},
+      BICKID = #{record.bickid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.appraise.appraise_model.model.TCCValuestand">
+    update t_c_c_valuestand
+    <set>
+      <if test="targetname != null">
+        TargetName = #{targetname,jdbcType=VARCHAR},
+      </if>
+      <if test="valuename != null">
+        ValueName = #{valuename,jdbcType=VARCHAR},
+      </if>
+      <if test="upperLimit != null">
+        Upper_Limit = #{upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="lowLimit != null">
+        Low_Limit = #{lowLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="scorevalue != null">
+        ScoreValue = #{scorevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="bickid != null">
+        BICKID = #{bickid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ValueCode = #{valuecode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.appraise.appraise_model.model.TCCValuestand">
+    update t_c_c_valuestand
+    set TargetName = #{targetname,jdbcType=VARCHAR},
+      ValueName = #{valuename,jdbcType=VARCHAR},
+      Upper_Limit = #{upperLimit,jdbcType=VARCHAR},
+      Low_Limit = #{lowLimit,jdbcType=VARCHAR},
+      ScoreValue = #{scorevalue,jdbcType=VARCHAR},
+      BICKID = #{bickid,jdbcType=VARCHAR}
+    where ValueCode = #{valuecode,jdbcType=VARCHAR}
+  </update>
+</mapper>

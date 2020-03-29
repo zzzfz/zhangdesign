@@ -1,0 +1,89 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font: 12px "微软雅黑";
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: #515356;
+}
+/*定义一个全局容器*/
+.container{
+    background-color: #e7e7e7;
+    width: 100%;
+    height: 100%;
+    margin: 0px auto;/*margin控制div块四个方向的边距,当只有两个参数时,第一个表示上下,第二个表示左右*/
+}
+/*定义一个左侧容器,放菜单导航内容*/
+.lefter{
+    background-color: #343a40;
+    width: 230px;
+    height: 100%;
+    float: left;
+}
+
+/*定义头部容器*/
+.header{
+    background-color: #E6E6E6;
+    width: calc(100% - 230px);
+    height: 64px;
+    float: right;
+}
+.headertext{
+    font-size: 20px;
+    color: #5a6268;
+    line-height: 64px;
+    padding-right: 20px;
+    float: right;
+}
+/*定义内容容器*/
+.content{
+    background-color: #F7F7F7;
+    width: calc(100% - 230px);
+    height: calc(100% - 104px);
+    float: right;
+}
+/*页脚容器*/
+.footer{
+    background-color: #FAFAFA;
+    width: calc(100% - 230px);
+    height: 40px;
+    line-height: 40px;
+    color: #73879C;
+    text-align: center;
+    float: right;
+}
+
+.logo{
+    width: 100%;
+    height: 120px;
+    line-height: 64px;
+    color: black;
+    font-weight: 400;
+    font-size: 22px;
+    display: block;
+    padding-left: 20px;
+    /*background-color: black;*/
+}
+.menu{
+    width: 100%;
+}
+.menu a{
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 13px;
+    height: 45px;
+    display: inline-block;
+    line-height: 45px;
+    padding-left: 25px;
+    width: 100%;
+}
+.menu a:hover,a:active,a:visited,a:focus{
+    background-color: rgba(255,255,255,0.20);
+}
+

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.appraise.appraise_model.mapper.TCCProjectproportionDAO">
+  <resultMap id="BaseResultMap" type="com.example.demo.appraise.appraise_model.model.TCCProjectproportion">
+    <id column="ProjectProportionId" jdbcType="VARCHAR" property="projectproportionid" />
+    <result column="ProjectName" jdbcType="VARCHAR" property="projectname" />
+    <result column="proportion" jdbcType="VARCHAR" property="proportion" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ProjectProportionId, ProjectName, proportion
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCProjectproportionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_c_projectproportion
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_c_projectproportion
+    where ProjectProportionId = #{projectproportionid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_c_c_projectproportion
+    where ProjectProportionId = #{projectproportionid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCProjectproportionExample">
+    delete from t_c_c_projectproportion
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="ProjectProportionId" keyProperty="projectproportionid" parameterType="com.example.demo.appraise.appraise_model.model.TCCProjectproportion" useGeneratedKeys="true">
+    insert into t_c_c_projectproportion (ProjectName, proportion,  projectproportionid)
+    values (#{projectname,jdbcType=VARCHAR}, #{proportion,jdbcType=VARCHAR}, #{projectproportionid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="ProjectProportionId" keyProperty="projectproportionid" parameterType="com.example.demo.appraise.appraise_model.model.TCCProjectproportion" useGeneratedKeys="true">
+    insert into t_c_c_projectproportion
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectname != null">
+        ProjectName,
+      </if>
+      <if test="proportion != null">
+        proportion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectname != null">
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="proportion != null">
+        #{proportion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCProjectproportionExample" resultType="java.lang.Long">
+    select count(*) from t_c_c_projectproportion
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_c_c_projectproportion
+    <set>
+      <if test="record.projectproportionid != null">
+        ProjectProportionId = #{record.projectproportionid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectname != null">
+        ProjectName = #{record.projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proportion != null">
+        proportion = #{record.proportion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_c_c_projectproportion
+    set ProjectProportionId = #{record.projectproportionid,jdbcType=VARCHAR},
+      ProjectName = #{record.projectname,jdbcType=VARCHAR},
+      proportion = #{record.proportion,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.appraise.appraise_model.model.TCCProjectproportion">
+    update t_c_c_projectproportion
+    <set>
+      <!--<if test="projectproportionid != null">-->
+        <!--projectproportionid = #{projectproportionid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <if test="projectname != null">
+        ProjectName = #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="proportion != null">
+        proportion = #{proportion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ProjectProportionId = #{projectproportionid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.appraise.appraise_model.model.TCCProjectproportion">
+    update t_c_c_projectproportion
+    set ProjectName = #{projectname,jdbcType=VARCHAR},
+      proportion = #{proportion,jdbcType=VARCHAR}
+    where ProjectProportionId = #{projectproportionid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.appraise.appraise_model.mapper.TCCIntegralstandardDAO">
+  <resultMap id="BaseResultMap" type="com.example.demo.appraise.appraise_model.model.TCCIntegralstandard">
+    <id column="SERIALNUM" jdbcType="VARCHAR" property="serialnum" />
+    <result column="INT_NAME" jdbcType="VARCHAR" property="intName" />
+    <result column="UPPER_LIMIT" jdbcType="VARCHAR" property="upperLimit" />
+    <result column="BOTTOM_LIMIT" jdbcType="VARCHAR" property="bottomLimit" />
+    <result column="INTEGRAL" jdbcType="VARCHAR" property="integral" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    SERIALNUM, INT_NAME, UPPER_LIMIT, BOTTOM_LIMIT, INTEGRAL, NOTE
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCIntegralstandardExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_c_integralstandard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_c_integralstandard
+    where SERIALNUM = #{serialnum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_c_c_integralstandard
+    where SERIALNUM = #{serialnum,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCIntegralstandardExample">
+    delete from t_c_c_integralstandard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="SERIALNUM" keyProperty="serialnum" parameterType="com.example.demo.appraise.appraise_model.model.TCCIntegralstandard" useGeneratedKeys="true">
+    insert into t_c_c_integralstandard (INT_NAME, UPPER_LIMIT, BOTTOM_LIMIT, SERIALNUM,
+      INTEGRAL, NOTE)
+    values (#{intName,jdbcType=VARCHAR}, #{upperLimit,jdbcType=VARCHAR}, #{bottomLimit,jdbcType=VARCHAR}, #{serialnum,jdbcType=VARCHAR},
+      #{integral,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="SERIALNUM" keyProperty="serialnum" parameterType="com.example.demo.appraise.appraise_model.model.TCCIntegralstandard" useGeneratedKeys="true">
+    insert into t_c_c_integralstandard
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="intName != null">
+        INT_NAME,
+      </if>
+      <if test="upperLimit != null">
+        UPPER_LIMIT,
+      </if>
+      <if test="bottomLimit != null">
+        BOTTOM_LIMIT,
+      </if>
+      <if test="integral != null">
+        INTEGRAL,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="intName != null">
+        #{intName,jdbcType=VARCHAR},
+      </if>
+      <if test="upperLimit != null">
+        #{upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="bottomLimit != null">
+        #{bottomLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.appraise.appraise_model.model.TCCIntegralstandardExample" resultType="java.lang.Long">
+    select count(*) from t_c_c_integralstandard
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_c_c_integralstandard
+    <set>
+      <if test="record.serialnum != null">
+        SERIALNUM = #{record.serialnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intName != null">
+        INT_NAME = #{record.intName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upperLimit != null">
+        UPPER_LIMIT = #{record.upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bottomLimit != null">
+        BOTTOM_LIMIT = #{record.bottomLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.integral != null">
+        INTEGRAL = #{record.integral,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null">
+        NOTE = #{record.note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_c_c_integralstandard
+    set SERIALNUM = #{record.serialnum,jdbcType=VARCHAR},
+      INT_NAME = #{record.intName,jdbcType=VARCHAR},
+      UPPER_LIMIT = #{record.upperLimit,jdbcType=VARCHAR},
+      BOTTOM_LIMIT = #{record.bottomLimit,jdbcType=VARCHAR},
+      INTEGRAL = #{record.integral,jdbcType=VARCHAR},
+      NOTE = #{record.note,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.appraise.appraise_model.model.TCCIntegralstandard">
+    update t_c_c_integralstandard
+    <set>
+      <if test="intName != null">
+        INT_NAME = #{intName,jdbcType=VARCHAR},
+      </if>
+      <if test="upperLimit != null">
+        UPPER_LIMIT = #{upperLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="bottomLimit != null">
+        BOTTOM_LIMIT = #{bottomLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        INTEGRAL = #{integral,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIALNUM = #{serialnum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.appraise.appraise_model.model.TCCIntegralstandard">
+    update t_c_c_integralstandard
+    set INT_NAME = #{intName,jdbcType=VARCHAR},
+      UPPER_LIMIT = #{upperLimit,jdbcType=VARCHAR},
+      BOTTOM_LIMIT = #{bottomLimit,jdbcType=VARCHAR},
+      INTEGRAL = #{integral,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR}
+    where SERIALNUM = #{serialnum,jdbcType=VARCHAR}
+  </update>
+</mapper>

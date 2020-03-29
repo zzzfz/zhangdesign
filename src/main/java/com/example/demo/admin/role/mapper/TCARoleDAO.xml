@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.admin.role.mapper.TCARoleDAO">
+  <resultMap id="BaseResultMap" type="com.example.demo.admin.role.model.TCARole">
+    <id column="roleId" jdbcType="VARCHAR" property="roleid" />
+    <result column="roleName" jdbcType="VARCHAR" property="rolename" />
+    <result column="roleNo" jdbcType="VARCHAR" property="roleno" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    roleId, roleName, roleNo
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.admin.role.model.TCARoleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_a_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_a_role
+    where roleId = #{roleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_c_a_role
+    where roleId = #{roleid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.admin.role.model.TCARoleExample">
+    delete from t_c_a_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="roleId" keyProperty="roleid" parameterType="com.example.demo.admin.role.model.TCARole" useGeneratedKeys="true">
+    insert into t_c_a_role (roleName, roleNo)
+    values (#{rolename,jdbcType=VARCHAR}, #{roleno,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="roleId" keyProperty="roleid" parameterType="com.example.demo.admin.role.model.TCARole" useGeneratedKeys="true">
+    insert into t_c_a_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rolename != null">
+        roleName,
+      </if>
+      <if test="roleno != null">
+        roleNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roleno != null">
+        #{roleno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.admin.role.model.TCARoleExample" resultType="java.lang.Long">
+    select count(*) from t_c_a_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_c_a_role
+    <set>
+      <if test="record.roleid != null">
+        roleId = #{record.roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rolename != null">
+        roleName = #{record.rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleno != null">
+        roleNo = #{record.roleno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_c_a_role
+    set roleId = #{record.roleid,jdbcType=VARCHAR},
+      roleName = #{record.rolename,jdbcType=VARCHAR},
+      roleNo = #{record.roleno,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.admin.role.model.TCARole">
+    update t_c_a_role
+    <set>
+      <if test="rolename != null">
+        roleName = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roleno != null">
+        roleNo = #{roleno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where roleId = #{roleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.admin.role.model.TCARole">
+    update t_c_a_role
+    set roleName = #{rolename,jdbcType=VARCHAR},
+      roleNo = #{roleno,jdbcType=VARCHAR}
+    where roleId = #{roleid,jdbcType=VARCHAR}
+  </update>
+</mapper>

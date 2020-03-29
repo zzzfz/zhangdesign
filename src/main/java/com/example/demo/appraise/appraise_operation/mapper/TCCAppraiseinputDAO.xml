@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.appraise.appraise_operation.mapper.TCCAppraiseinputDAO">
+  <resultMap id="BaseResultMap" type="com.example.demo.appraise.appraise_operation.model.TCCAppraiseinput">
+    <id column="clientCode" jdbcType="VARCHAR" property="clientcode" />
+    <result column="clientName" jdbcType="VARCHAR" property="clientname" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="storeName" jdbcType="VARCHAR" property="storename" />
+    <result column="appraise" jdbcType="VARCHAR" property="appraise" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="route" jdbcType="VARCHAR" property="route" />
+    <result column="autoGrade" jdbcType="VARCHAR" property="autograde" />
+    <result column="autoNum" jdbcType="VARCHAR" property="autonum" />
+    <result column="humanGrade" jdbcType="VARCHAR" property="humangrade" />
+    <result column="human" jdbcType="VARCHAR" property="human" />
+    <result column="cooperate" jdbcType="VARCHAR" property="cooperate" />
+    <result column="important" jdbcType="VARCHAR" property="important" />
+    <result column="depend" jdbcType="VARCHAR" property="depend" />
+    <result column="credit" jdbcType="VARCHAR" property="credit" />
+    <result column="contribution" jdbcType="VARCHAR" property="contribution" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    clientCode, clientName, address, storeName, appraise, `month`, route, autoGrade, 
+    autoNum, humanGrade, human, cooperate, important, depend, credit, contribution
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.appraise.appraise_operation.model.TCCAppraiseinputExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_c_appraiseinput
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_c_appraiseinput
+    where clientCode = #{clientcode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_c_c_appraiseinput
+    where clientCode = #{clientcode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.appraise.appraise_operation.model.TCCAppraiseinputExample">
+    delete from t_c_c_appraiseinput
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="clientCode" keyProperty="clientcode" parameterType="com.example.demo.appraise.appraise_operation.model.TCCAppraiseinput" useGeneratedKeys="true">
+    insert into t_c_c_appraiseinput (clientName, address, storeName, 
+      appraise, `month`, route, 
+      autoGrade, autoNum, humanGrade, 
+      human, cooperate, important, 
+      depend, credit, contribution
+      )
+    values (#{clientname,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{storename,jdbcType=VARCHAR}, 
+      #{appraise,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{route,jdbcType=VARCHAR}, 
+      #{autograde,jdbcType=VARCHAR}, #{autonum,jdbcType=VARCHAR}, #{humangrade,jdbcType=VARCHAR}, 
+      #{human,jdbcType=VARCHAR}, #{cooperate,jdbcType=VARCHAR}, #{important,jdbcType=VARCHAR}, 
+      #{depend,jdbcType=VARCHAR}, #{credit,jdbcType=VARCHAR}, #{contribution,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="clientCode" keyProperty="clientcode" parameterType="com.example.demo.appraise.appraise_operation.model.TCCAppraiseinput" useGeneratedKeys="true">
+    insert into t_c_c_appraiseinput
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clientname != null">
+        clientName,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="storename != null">
+        storeName,
+      </if>
+      <if test="appraise != null">
+        appraise,
+      </if>
+      <if test="month != null">
+        `month`,
+      </if>
+      <if test="route != null">
+        route,
+      </if>
+      <if test="autograde != null">
+        autoGrade,
+      </if>
+      <if test="autonum != null">
+        autoNum,
+      </if>
+      <if test="humangrade != null">
+        humanGrade,
+      </if>
+      <if test="human != null">
+        human,
+      </if>
+      <if test="cooperate != null">
+        cooperate,
+      </if>
+      <if test="important != null">
+        important,
+      </if>
+      <if test="depend != null">
+        depend,
+      </if>
+      <if test="credit != null">
+        credit,
+      </if>
+      <if test="contribution != null">
+        contribution,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clientname != null">
+        #{clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="storename != null">
+        #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="appraise != null">
+        #{appraise,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="route != null">
+        #{route,jdbcType=VARCHAR},
+      </if>
+      <if test="autograde != null">
+        #{autograde,jdbcType=VARCHAR},
+      </if>
+      <if test="autonum != null">
+        #{autonum,jdbcType=VARCHAR},
+      </if>
+      <if test="humangrade != null">
+        #{humangrade,jdbcType=VARCHAR},
+      </if>
+      <if test="human != null">
+        #{human,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperate != null">
+        #{cooperate,jdbcType=VARCHAR},
+      </if>
+      <if test="important != null">
+        #{important,jdbcType=VARCHAR},
+      </if>
+      <if test="depend != null">
+        #{depend,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null">
+        #{credit,jdbcType=VARCHAR},
+      </if>
+      <if test="contribution != null">
+        #{contribution,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.appraise.appraise_operation.model.TCCAppraiseinputExample" resultType="java.lang.Long">
+    select count(*) from t_c_c_appraiseinput
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_c_c_appraiseinput
+    <set>
+      <if test="record.clientcode != null">
+        clientCode = #{record.clientcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientname != null">
+        clientName = #{record.clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storename != null">
+        storeName = #{record.storename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appraise != null">
+        appraise = #{record.appraise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.month != null">
+        `month` = #{record.month,jdbcType=VARCHAR},
+      </if>
+      <if test="record.route != null">
+        route = #{record.route,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autograde != null">
+        autoGrade = #{record.autograde,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autonum != null">
+        autoNum = #{record.autonum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.humangrade != null">
+        humanGrade = #{record.humangrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.human != null">
+        human = #{record.human,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cooperate != null">
+        cooperate = #{record.cooperate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.important != null">
+        important = #{record.important,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depend != null">
+        depend = #{record.depend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credit != null">
+        credit = #{record.credit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contribution != null">
+        contribution = #{record.contribution,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_c_c_appraiseinput
+    set clientCode = #{record.clientcode,jdbcType=VARCHAR},
+      clientName = #{record.clientname,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      storeName = #{record.storename,jdbcType=VARCHAR},
+      appraise = #{record.appraise,jdbcType=VARCHAR},
+      `month` = #{record.month,jdbcType=VARCHAR},
+      route = #{record.route,jdbcType=VARCHAR},
+      autoGrade = #{record.autograde,jdbcType=VARCHAR},
+      autoNum = #{record.autonum,jdbcType=VARCHAR},
+      humanGrade = #{record.humangrade,jdbcType=VARCHAR},
+      human = #{record.human,jdbcType=VARCHAR},
+      cooperate = #{record.cooperate,jdbcType=VARCHAR},
+      important = #{record.important,jdbcType=VARCHAR},
+      depend = #{record.depend,jdbcType=VARCHAR},
+      credit = #{record.credit,jdbcType=VARCHAR},
+      contribution = #{record.contribution,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.appraise.appraise_operation.model.TCCAppraiseinput">
+    update t_c_c_appraiseinput
+    <set>
+      <if test="clientname != null">
+        clientName = #{clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="storename != null">
+        storeName = #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="appraise != null">
+        appraise = #{appraise,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        `month` = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="route != null">
+        route = #{route,jdbcType=VARCHAR},
+      </if>
+      <if test="autograde != null">
+        autoGrade = #{autograde,jdbcType=VARCHAR},
+      </if>
+      <if test="autonum != null">
+        autoNum = #{autonum,jdbcType=VARCHAR},
+      </if>
+      <if test="humangrade != null">
+        humanGrade = #{humangrade,jdbcType=VARCHAR},
+      </if>
+      <if test="human != null">
+        human = #{human,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperate != null">
+        cooperate = #{cooperate,jdbcType=VARCHAR},
+      </if>
+      <if test="important != null">
+        important = #{important,jdbcType=VARCHAR},
+      </if>
+      <if test="depend != null">
+        depend = #{depend,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null">
+        credit = #{credit,jdbcType=VARCHAR},
+      </if>
+      <if test="contribution != null">
+        contribution = #{contribution,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where clientCode = #{clientcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.appraise.appraise_operation.model.TCCAppraiseinput">
+    update t_c_c_appraiseinput
+    set clientName = #{clientname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      storeName = #{storename,jdbcType=VARCHAR},
+      appraise = #{appraise,jdbcType=VARCHAR},
+      `month` = #{month,jdbcType=VARCHAR},
+      route = #{route,jdbcType=VARCHAR},
+      autoGrade = #{autograde,jdbcType=VARCHAR},
+      autoNum = #{autonum,jdbcType=VARCHAR},
+      humanGrade = #{humangrade,jdbcType=VARCHAR},
+      human = #{human,jdbcType=VARCHAR},
+      cooperate = #{cooperate,jdbcType=VARCHAR},
+      important = #{important,jdbcType=VARCHAR},
+      depend = #{depend,jdbcType=VARCHAR},
+      credit = #{credit,jdbcType=VARCHAR},
+      contribution = #{contribution,jdbcType=VARCHAR}
+    where clientCode = #{clientcode,jdbcType=VARCHAR}
+  </update>
+</mapper>
