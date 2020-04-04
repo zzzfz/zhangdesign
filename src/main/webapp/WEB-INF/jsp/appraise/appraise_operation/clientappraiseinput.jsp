@@ -131,10 +131,10 @@
                                 + '<div  class="input-group mb-3">'
                                 + '<div class="input-group-prepend">'
                                 + '<span class="input-group-text" id="spa' + i + '">' + targetStands[i].targetname + '</span>'
+                                + '</div>'
                                 + '<select class="form-control" name="selIntegral" id="sel' + i + '" style="width: 300px">'
                                 + '<option value="请选择">请选择</option>'
                                 + '</select>'
-                                + '</div>'
                                 + '</div>'
                                 + '</form>');
                         }

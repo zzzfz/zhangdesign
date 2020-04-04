@@ -31,23 +31,23 @@
                 pageList: [5, 10, 20], //选择每页显示多少行，数据过少时可能会没有效果
                 columns:[
                     {
-                        field: 'clientSort',
+                        field: 'humangrade',
                         title: '客户分类',
                         valign: 'middle',
                         width: 160
                     },{
-                        field: 'clientTotal',
-                        title: '客户总人数',
+                        field: 'clientname',
+                        title: '客户简称',
+                        valign: 'middle',
+                        width: 160
+                    },{
+                        field: 'clientcode',
+                        title: '客户简码',
                         valign: 'middle',
                         width: 160
                     },{
                         field: 'route',
                         title: '路线名称',
-                        valign: 'middle',
-                        width: 160
-                    },{
-                        field: 'bursarMonth',
-                        title: '会计区间',
                         valign: 'middle',
                         width: 160
                     }
@@ -63,30 +63,23 @@
         <div style="height: 50px">
             <div style="margin: 10px">
                 <div align="right" style="margin: 10px">
-                    选择路线：
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="telephoneTraffic"/>
-                        话务路线</label>
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="inspect"/>
-                        稽查路线</label>
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="goods"/>
-                        送货路线</label>
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="visit"/>
-                        拜访路线</label>
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="all"/>
-                        全部路线</label>
-                </div>
-            </div>
-        </div>
-        <div style="height: 50px">
-            <div style="margin: 10px">
-                <div align="right" style="margin: 10px">
                     <div style="width: 250px;display:inline-block;margin-right: 15px">
                         <form>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">会计区间</span>
+                                    <span class="input-group-text">客户分类</span>
                                 </div>
-                                <input type="text" class="form-control" name="txtBursarMonth" id="bursarMonth">
+                                <input type="text" class="form-control" name="txtBursarMonth" id="humangrde">
+                            </div>
+                        </form>
+                    </div>
+                    <div style="width: 250px;display:inline-block;margin-right: 15px">
+                        <form>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">路线名称</span>
+                                </div>
+                                <input type="text" class="form-control" name="txtBursarMonth" id="route">
                             </div>
                         </form>
                     </div>

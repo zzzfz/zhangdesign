@@ -105,7 +105,7 @@
 <div style="margin: 25px">
     <!--评价结果-->
     <form name="frmCount" method="post" action="#" id="standard_list">
-        <h1 style="font-size: 25px;font-weight: bold">评价结果计算</h1>
+        <h1 style="font-size: 25px;font-weight: bold">评价结果列表</h1>
         <div style="height: 50px;margin-bottom: 40px">
             <div style="margin: 10px">
                 <%--btn--%>
@@ -114,7 +114,7 @@
                         <button type="button" name="btnAdd" class="btn"
                                 style="padding: 0px;width: 150px;height: 30px; margin-right: 15px;background-color: #17a2b8" data-toggle="modal" data-target="#modStr">
                             <img src="/img/produce.png" style="width: 15px">
-                            生成评价结构
+                            评价结果计算
                         </button>
                     </div>
                 </div>
@@ -175,21 +175,21 @@
                     </form>
 
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">评价方式：</span>
-                            </div>
-                            <select class="form-control" id="selAppraiseWay">
-                                <option value ="请选择">请选择</option>
-                                <option value ="人数">人数</option>
-                                <option value ="人数百分比">人数百分比</option>
-                                <option value ="得分上限下限">得分上限下限</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
+                <%--<div class="modal-body">--%>
+                    <%--<form>--%>
+                        <%--<div class="input-group mb-3">--%>
+                            <%--<div class="input-group-prepend">--%>
+                                <%--<span class="input-group-text">评价方式：</span>--%>
+                            <%--</div>--%>
+                            <%--<select class="form-control" id="selAppraiseWay">--%>
+                                <%--<option value ="请选择">请选择</option>--%>
+                                <%--<option value ="人数">人数</option>--%>
+                                <%--<option value ="人数百分比">人数百分比</option>--%>
+                                <%--<option value ="得分上限下限">得分上限下限</option>--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
+                    <%--</form>--%>
+                <%--</div>--%>
                 <div class="modal-body">
                     <form>
                         <div class="input-group mb-3">
@@ -209,7 +209,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消
                     </button>
-                    <input type="button" class="btn btn-primary" onclick="appraiseStr()" value="生成评价结果">
+                    <input type="button" class="btn btn-primary" onclick="appraiseStr()" value="生成客户评价结果">
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->

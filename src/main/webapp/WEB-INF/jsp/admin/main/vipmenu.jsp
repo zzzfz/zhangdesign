@@ -23,7 +23,11 @@
 <div style="background-color: #263238;width: 230px;position: absolute">
     <div class="logo">
         <img src="/img/userIcon.png" style="margin-left: 60px;margin-top: 15px;height: 55px;width: 55px">
+        <div style="color: white;padding-left: 70px;padding-top: 20px">
+            zhang
+        </div>
     </div>
+
     <div id="firstpane" class="menu_list" style="position: absolute;">
         <p class="menu_head current"
            style="width: 230px;font-size: 20px;background-color: #263238;color: white;border: 0px" >
@@ -48,7 +52,7 @@
             评价操作</p>
         <div style="display:none;width: 230px" class=menu_body >
             <a href="/appraiseInput" target="useriframe" style="margin-left: 20px">评价信息录入</a>
-            <a href="/appraiseCount" target="useriframe" style="margin-left: 20px">评价结果计算</a>
+            <a href="/appraiseCount" target="useriframe" style="margin-left: 20px">评价结果列表</a>
             <a href="/resultsCheck" target="useriframe" style="margin-left: 20px">评价结果审核</a>
         </div>
         <p class="menu_head"

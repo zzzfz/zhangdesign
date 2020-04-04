@@ -73,23 +73,6 @@
         <div style="height: 50px">
             <div style="margin: 10px">
                 <div align="right" style="margin: 10px">
-                    选择路线：
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="telephoneTraffic"/>
-                        话务路线</label>
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="inspect"/>
-                        稽查路线</label>
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="goods"/>
-                        送货路线</label>
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="visit"/>
-                        拜访路线</label>
-                    <label style="margin-left: 25px"><input type="radio" name="rdoRoute" style="margin-right: 20px" value="" id="all"/>
-                        全部路线</label>
-                </div>
-            </div>
-        </div>
-        <div style="height: 50px">
-            <div style="margin: 10px">
-                <div align="right" style="margin: 10px">
                     <div style="width: 250px;display:inline-block;margin-right: 15px">
                         <form>
                             <div class="input-group mb-3">
