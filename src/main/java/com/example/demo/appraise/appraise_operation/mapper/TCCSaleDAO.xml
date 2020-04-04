@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.appraise.appraise_operation.mapper.TCCSaleDAO">
+  <resultMap id="BaseResultMap" type="com.example.demo.appraise.appraise_operation.model.TCCSale">
+    <id column="saleCode" jdbcType="VARCHAR" property="salecode" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="saleVolume" jdbcType="VARCHAR" property="salevolume" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    saleCode, `month`, saleVolume, money
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.appraise.appraise_operation.model.TCCSaleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_c_c_sale
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_c_c_sale
+    where saleCode = #{salecode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_c_c_sale
+    where saleCode = #{salecode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.appraise.appraise_operation.model.TCCSaleExample">
+    delete from t_c_c_sale
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="saleCode" keyProperty="salecode" parameterType="com.example.demo.appraise.appraise_operation.model.TCCSale" useGeneratedKeys="true">
+    insert into t_c_c_sale (`month`, saleVolume, money
+      )
+    values (#{month,jdbcType=VARCHAR}, #{salevolume,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="saleCode" keyProperty="salecode" parameterType="com.example.demo.appraise.appraise_operation.model.TCCSale" useGeneratedKeys="true">
+    insert into t_c_c_sale
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="month != null">
+        `month`,
+      </if>
+      <if test="salevolume != null">
+        saleVolume,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="salevolume != null">
+        #{salevolume,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.appraise.appraise_operation.model.TCCSaleExample" resultType="java.lang.Long">
+    select count(*) from t_c_c_sale
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_c_c_sale
+    <set>
+      <if test="record.salecode != null">
+        saleCode = #{record.salecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.month != null">
+        `month` = #{record.month,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salevolume != null">
+        saleVolume = #{record.salevolume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_c_c_sale
+    set saleCode = #{record.salecode,jdbcType=VARCHAR},
+      `month` = #{record.month,jdbcType=VARCHAR},
+      saleVolume = #{record.salevolume,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.appraise.appraise_operation.model.TCCSale">
+    update t_c_c_sale
+    <set>
+      <if test="month != null">
+        `month` = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="salevolume != null">
+        saleVolume = #{salevolume,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where saleCode = #{salecode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.appraise.appraise_operation.model.TCCSale">
+    update t_c_c_sale
+    set `month` = #{month,jdbcType=VARCHAR},
+      saleVolume = #{salevolume,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR}
+    where saleCode = #{salecode,jdbcType=VARCHAR}
+  </update>
+</mapper>

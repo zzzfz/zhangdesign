@@ -18,6 +18,26 @@
         $(function () {
             initAppraiseResult();
         })
+        function count() {
+            $('#modStr').modal('show');
+        }
+        //评价结果计算
+        function appraiseStr() {
+            let month = $("#monthStr").val();
+            let selFormula = $("#selFormula").val();
+            $.ajax({
+                url: '${pageContext.request.contextPath}/appraiseCount',
+                type: 'POST',
+                data: {
+                    month : month,
+                    selFormula : selFormula
+                },
+                success: function () {
+                    $('#modStr').modal('hide');
+                    $("#appraiseResult_table").bootstrapTable('refresh', {url:'${pageContext.request.contextPath}/countList?month='+ $("#month").val() +'&route='+$("#route").val()+''})
+                }
+            });
+        }
         function initAppraiseResult() {
             $('#appraiseResult_table').bootstrapTable({
                 url:'${pageContext.request.contextPath}/countList?month=${month}&route=${route}',
@@ -84,7 +104,7 @@
                         sortable: true,
                         width: 160
                     },{
-                        field: 'autonumber',
+                        field: 'autonum',
                         title: '自动测评分数',
                         valign: 'middle',
                         sortable: true,
@@ -112,7 +132,7 @@
                 <div>
                     <div style="margin-top: 30px">
                         <button type="button" name="btnAdd" class="btn"
-                                style="padding: 0px;width: 150px;height: 30px; margin-right: 15px;background-color: #17a2b8" data-toggle="modal" data-target="#modStr">
+                                style="padding: 0px;width: 150px;height: 30px; margin-right: 15px;background-color: #17a2b8" onclick="count()">
                             <img src="/img/produce.png" style="width: 15px">
                             评价结果计算
                         </button>
@@ -197,7 +217,6 @@
                                 <span class="input-group-text">评价公式：</span>
                             </div>
                             <select class="form-control" id="selFormula">
-                                <option value ="请选择">请选择</option>
                                 <option value ="1">客户价值=（客户诚信度＋客户依存度）x客户月均销量1/2x（条均价）1/2/100</option>
                                 <option value ="2">客户价值=客户诚信度x（客户月均销量x条均价）1/2x（1＋客户依存度）</option>
                             </select>
