@@ -18,14 +18,17 @@
 
     <script type="text/javascript">
         $(function () {
-            initClassifiedFluctuation();
+            // initClassifiedFluctuation();
         })
         //分类波动查询
         function initClassifiedFluctuation() {
+            let queryMonth = $("#queryMonth").val() == "" ? null : $("#queryMonth").val();
+            let compareMonth = $("#compareMonth").val() == "" ? null : $("#compareMonth").val();
+            let clientName = $("#clientName").val() == "" ? null : $("#clientName").val();
             $('#classifiedFluctuation_table').bootstrapTable({
-                url:'${pageContext.request.contextPath}/',
+                url:'${pageContext.request.contextPath}/clazz/'+queryMonth+'/'+compareMonth+'/'+clientName,
                 type:"GET",
-                uniqueId:"classifiedFluctuationId",
+                // uniqueId:"classifiedFluctuationId",
                 pagination: true,   //是否显示分页条
                 pageSize: 5,   //一页显示的行数
                 locale: 'zh-CN',
@@ -33,38 +36,65 @@
                 pageList: [5, 10, 20], //选择每页显示多少行，数据过少时可能会没有效果
                 columns:[
                     {
-                        field: 'clientname',
+                        field: 'clientName',
                         title: '客户简称',
                         valign: 'middle',
                         width: 160
                     },{
-                        field: 'queryMonthlyIntegral',
+                        field: 'queryHumanNum',
                         title: '查询月积分',
                         valign: 'middle',
+                        formatter: function (value, row, index) {
+                            if (value != null){
+                                return value;
+                            } else {
+                                return row.queryAutoNum;
+                            }
+                        },
                         width: 160
                     },{
-                        field: 'compareMonthlyIntegral',
+                        field: 'compareHumanNum',
                         title: '对照月积分',
                         valign: 'middle',
+                        formatter: function (value, row, index) {
+                            if (value != null){
+                                return value;
+                            } else {
+                                return row.compareAutoNum;
+                            }
+                        },
                         width: 160
                     },{
-                        field: 'queryMonthlySort',
+                        field: 'queryHumanType',
                         title: '查询月客户分类',
                         valign: 'middle',
+                        formatter: function (value, row, index) {
+                            if (value != null){
+                                return value;
+                            } else {
+                                return row.queryAutoType;
+                            }
+                        },
                         width: 160
                     },{
-                        field: 'compareMonthlySort',
+                        field: 'compareHumanType',
                         title: '对照月客户分类',
                         valign: 'middle',
-                        width: 160
-                    },{
-                        field: 'month',
-                        title: '会计区间',
-                        valign: 'middle',
+                        formatter: function (value, row, index) {
+                            if (value != null){
+                                return value;
+                            } else {
+                                return row.compareAutoType;
+                            }
+                        },
                         width: 160
                     }
                 ]
             })
+        }
+
+        function query() {
+            initClassifiedFluctuation();
         }
     </script>
 </head>

@@ -384,4 +384,19 @@
       contribution = #{contribution,jdbcType=VARCHAR}
     where clientCode = #{clientcode,jdbcType=VARCHAR}
   </update>
+  <select id="selectClientNameDictinct" resultType="java.lang.String">
+    SELECT DISTINCT
+	clientName
+    FROM
+	t_c_c_appraiseinput
+  </select>
+
+  <select id="selectClientNameByName" parameterType = "java.lang.String" resultType="java.lang.String">
+    SELECT DISTINCT
+	clientName
+    FROM
+	t_c_c_appraiseinput
+	WHERE
+	clientName = #{clientName,jdbcType=VARCHAR}
+  </select>
 </mapper>

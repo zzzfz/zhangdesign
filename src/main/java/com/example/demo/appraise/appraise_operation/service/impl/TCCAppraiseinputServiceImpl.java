@@ -67,4 +67,14 @@ public class TCCAppraiseinputServiceImpl implements TCCAppraiseinputService {
     public int updateByPrimaryKey(TCCAppraiseinput record) {
         return 0;
     }
+
+    @Override
+    public List<String> selectClientNameDictinct() {
+        return tccAppraiseinputDAO.selectClientNameDictinct();
+    }
+
+    @Override
+    public List<String> selectClientNameByName(String clientName) {
+        return tccAppraiseinputDAO.selectClientNameByName(clientName);
+    }
 }

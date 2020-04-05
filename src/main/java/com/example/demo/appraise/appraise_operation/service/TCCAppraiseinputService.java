@@ -28,4 +28,8 @@ public interface TCCAppraiseinputService {
     int updateByPrimaryKeySelective(TCCAppraiseinput record);
 
     int updateByPrimaryKey(TCCAppraiseinput record);
+
+    List<String> selectClientNameDictinct();
+
+    List<String> selectClientNameByName(String clientName);
 }
