@@ -36,6 +36,13 @@
                         field: 'humangrade',
                         title: '客户分类',
                         valign: 'middle',
+                        formatter: function (value, row, index) {
+                            if (value != null){
+                                return value;
+                            } else {
+                                return row.autograde;
+                            }
+                        },
                         width: 160
                     },{
                         field: 'clientname',
@@ -97,7 +104,7 @@
                     <button type="button" class="btn btn-primary"
                             style="background-color: #17a2b8;width: 100px;height: 38px;padding: 0px"  name="btnQuery" onclick="print()" >
                         <img src="/img/print.png" width="15px">
-                        打印
+                        导出Excel
                     </button>
                 </div>
             </div>

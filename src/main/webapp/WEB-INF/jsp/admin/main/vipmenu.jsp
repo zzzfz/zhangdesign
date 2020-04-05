@@ -32,7 +32,8 @@
         <p class="menu_head current"
            style="width: 230px;font-size: 20px;background-color: #263238;color: white;border: 0px" >
             <img src="/img/main.png" style="width: 15px">
-            主页
+            <a href="/userhome" target="useriframe" style="font-size: 20px;color: white;font-weight: bold;text-decoration : none " >
+                主页</a>
         </p>
         <p class="menu_head current"
            style="width: 230px;font-size: 20px;background-color: #263238;color: white;border: 0px">

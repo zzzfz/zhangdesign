@@ -104,7 +104,12 @@
         <h1 style="font-size: 25px;font-weight: bold">分类波动查询</h1>
         <div style="height: 50px">
             <div style="margin: 10px">
-                <div align="right" style="margin: 10px">
+                <div align="center" style="margin: 20px">
+                    <span>
+                        说明：输入需要作比较查询月和对照月，则可以查看两个月份客户分数和等级的波动情况。
+                    </span>
+                </div>
+                <div align="center" style="margin: 10px">
                     <div style="width: 250px;display:inline-block;margin-right: 15px">
                         <form>
                             <div class="input-group mb-3">
@@ -135,30 +140,15 @@
                             </div>
                         </form>
                     </div>
-                    <%--<div style="width: 250px;display:inline-block;margin-right: 15px">--%>
-                        <%--<form>--%>
-                            <%--<div class="input-group mb-3">--%>
-                                <%--<div class="input-group-prepend">--%>
-                                    <%--<span class="input-group-text">客户简码</span>--%>
-                                <%--</div>--%>
-                                <%--<input type="text" class="form-control" name="txtClientCode" id="ClientCode">--%>
-                            <%--</div>--%>
-                        <%--</form>--%>
-                    <%--</div>--%>
                     <button type="button" class="btn btn-primary"
                             style="background-color: #17a2b8;width: 100px;height: 38px;padding: 0px"  name="btnQuery" onclick="query()" >
                         <img src="/img/query.png" width="15px">
                         查询
                     </button>
-                    <button type="button" class="btn btn-primary"
-                            style="background-color: #17a2b8;width: 100px;height: 38px;padding: 0px"  name="btnQuery" onclick="print()" >
-                        <img src="/img/print.png" width="15px">
-                        打印
-                    </button>
                 </div>
             </div>
         </div>
-        <div style="height: 478px">
+        <div style="height: 428px;margin-top: 50px">
             <table align="center" style="height: 100px" id="classifiedFluctuation_table" data-click-to-select="true"></table>
         </div>
 

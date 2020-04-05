@@ -114,8 +114,6 @@
             $("#appraiseResult_table").bootstrapTable('refresh', {url:'${pageContext.request.contextPath}/appraiseList?month='+
                     $("#month").val() +'&clientName='+$("#clientNameQuery").val()+''})
 
-            <%--$("#check_table").bootstrapTable('refresh', {url:'${pageContext.request.contextPath}/checkList?month='+--%>
-                    <%--$("#monthQuery").val() +'&clientCode='+$("#clientCodeQuery").val()+''})--%>
         }
     </script>
 </head>
@@ -146,16 +144,7 @@
                             </div>
                         </form>
                     </div>
-                    <%--<div style="width: 250px;display:inline-block;margin-right: 15px">--%>
-                        <%--<form>--%>
-                            <%--<div class="input-group mb-3">--%>
-                                <%--<div class="input-group-prepend">--%>
-                                    <%--<span class="input-group-text">客户简码</span>--%>
-                                <%--</div>--%>
-                                <%--<input type="text" class="form-control" name="clientCode" id="clientCodeQuery">--%>
-                            <%--</div>--%>
-                        <%--</form>--%>
-                    <%--</div>--%>
+
                     <button type="button" class="btn btn-primary"
                             style="background-color: #17a2b8;width: 100px;height: 38px;padding: 0px"  name="btnQuery" onclick="query()" >
                         <img src="/img/query.png" width="15px">
@@ -164,7 +153,7 @@
                     <button type="button" class="btn btn-primary"
                             style="background-color: #17a2b8;width: 100px;height: 38px;padding: 0px"  name="btnQuery" onclick="print()" >
                         <img src="/img/print.png" width="15px">
-                        打印
+                        导出Excel
                     </button>
                 </div>
             </div>

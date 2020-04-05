@@ -30,7 +30,7 @@
                 singleSelect: true, //单选
                 locale: 'zh-CN',
                 pagination: true,   //是否显示分页条
-                pageSize: 6,   //一页显示的行数
+                pageSize: 8,   //一页显示的行数
                 paginationLoop: false,   //是否开启分页条无限循环，最后一页时点击下一页是否转到第一页
                 // pageList: [5, 10, 20], //选择每页显示多少行，数据过少时可能会没有效果
                 columns: [
@@ -266,7 +266,7 @@
                 </div>
             </div>
         </div>
-        <div style="height: 438px">
+        <div style="height: 493px">
             <table align="center" style="height: 80px" id="clientAppraise_table" data-click-to-select="true"></table>
         </div>
         <%--评价模态框--%>
