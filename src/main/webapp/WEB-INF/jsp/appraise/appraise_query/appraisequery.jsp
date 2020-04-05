@@ -80,6 +80,13 @@
                         field: 'human',
                         title: '最后得分',
                         valign: 'middle',
+                        formatter: function (value, row, index) {
+                            if (value != null){
+                                return value;
+                            } else {
+                                return row.autonum;
+                            }
+                        },
                         width: 160
                     },{
                         field: 'month',
@@ -90,6 +97,13 @@
                         field: 'humangrade',
                         title: '客户类别',
                         valign: 'middle',
+                        formatter: function (value, row, index) {
+                            if (value != null){
+                                return value;
+                            } else {
+                                return row.autograde;
+                            }
+                        },
                         width: 160
                     }
                 ]
