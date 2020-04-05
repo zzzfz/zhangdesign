@@ -13,6 +13,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table-zh-CN.min.js"></script>
     <link href="/css/bootstrap-table.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
@@ -29,6 +30,7 @@
                 search: true, //搜索
                 pagination: true,   //是否显示分页条
                 pageSize: 5,   //一页显示的行数
+                locale: 'zh-CN',
                 paginationLoop: false,   //是否开启分页条无限循环，最后一页时点击下一页是否转到第一页
                 pageList: [5, 10, 20], //选择每页显示多少行，数据过少时可能会没有效果
                 columns:[

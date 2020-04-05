@@ -13,6 +13,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table-zh-CN.min.js"></script>
     <link href="/css/bootstrap-table.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
@@ -27,6 +28,7 @@
                 uniqueId:"valuecode",
                 singleSelect: true, //单选
                 search: true, //搜索
+                locale: 'zh-CN',
                 pagination: true,   //是否显示分页条
                 pageSize: 5,   //一页显示的行数
                 paginationLoop: false,   //是否开启分页条无限循环，最后一页时点击下一页是否转到第一页

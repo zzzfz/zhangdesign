@@ -13,6 +13,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table-zh-CN.min.js"></script>
     <link href="/css/bootstrap-table.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
@@ -22,10 +23,11 @@
         //评价结果审核
         function initEvaluationReview() {
             $('#check_table').bootstrapTable({
-                url:'${pageContext.request.contextPath}/checkList?clientcode=${clientCode}&month=${month}',
+                url:'${pageContext.request.contextPath}/checkList?clientname=${clientName}&month=${month}',
                 type:"GET",
                 uniqueId:"clientcode",
                 singleSelect: true, //单选
+                locale: 'zh-CN',
                 pagination: true,   //是否显示分页条
                 pageSize: 6,   //一页显示的行数
                 paginationLoop: false,   //是否开启分页条无限循环，最后一页时点击下一页是否转到第一页
@@ -132,7 +134,7 @@
     //    查询
         function query() {
             $("#check_table").bootstrapTable('refresh', {url:'${pageContext.request.contextPath}/checkList?month='+
-                    $("#monthQuery").val() +'&clientCode='+$("#clientCodeQuery").val()+''})
+                    $("#monthQuery").val() +'&clientNode='+$("#clientNameQuery").val()+''})
 
         }
     </script>
@@ -167,9 +169,9 @@
                         <form>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">客户简码</span>
+                                    <span class="input-group-text">客户简称</span>
                                 </div>
-                                <input type="text" class="form-control" name="clientCode" id="clientCodeQuery">
+                                <input type="text" class="form-control" name="clientName" id="clientNameQuery">
                             </div>
                         </form>
                     </div>

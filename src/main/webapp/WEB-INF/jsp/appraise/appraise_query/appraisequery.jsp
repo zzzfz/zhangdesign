@@ -14,6 +14,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table-zh-CN.min.js"></script>
     <link href="/css/bootstrap-table.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
@@ -23,10 +24,11 @@
         //评价结果查询
         function initAppraiseResult() {
             $('#appraiseResult_table').bootstrapTable({
-                url:'${pageContext.request.contextPath}/appraiseList?clientcode=${clientCode}&month=${month}&clientname=${clientName}',
+                url:'${pageContext.request.contextPath}/appraiseList?month=${month}&clientname=${clientName}',
                 type:"GET",
                 uniqueId:"clientcode",
                 pagination: true,   //是否显示分页条
+                locale: 'zh-CN',
                 pageSize: 8,   //一页显示的行数
                 paginationLoop: false,   //是否开启分页条无限循环，最后一页时点击下一页是否转到第一页
                 pageList: [5, 10, 20], //选择每页显示多少行，数据过少时可能会没有效果
@@ -96,7 +98,7 @@
     //    查询
         function query() {
             $("#appraiseResult_table").bootstrapTable('refresh', {url:'${pageContext.request.contextPath}/appraiseList?month='+
-                    $("#month").val() +'&clientName='+$("#clientNameQuery").val()+'&clientCode='+$("#clientCodeQuery").val()+''})
+                    $("#month").val() +'&clientName='+$("#clientNameQuery").val()+''})
 
             <%--$("#check_table").bootstrapTable('refresh', {url:'${pageContext.request.contextPath}/checkList?month='+--%>
                     <%--$("#monthQuery").val() +'&clientCode='+$("#clientCodeQuery").val()+''})--%>
@@ -130,16 +132,16 @@
                             </div>
                         </form>
                     </div>
-                    <div style="width: 250px;display:inline-block;margin-right: 15px">
-                        <form>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">客户简码</span>
-                                </div>
-                                <input type="text" class="form-control" name="clientCode" id="clientCodeQuery">
-                            </div>
-                        </form>
-                    </div>
+                    <%--<div style="width: 250px;display:inline-block;margin-right: 15px">--%>
+                        <%--<form>--%>
+                            <%--<div class="input-group mb-3">--%>
+                                <%--<div class="input-group-prepend">--%>
+                                    <%--<span class="input-group-text">客户简码</span>--%>
+                                <%--</div>--%>
+                                <%--<input type="text" class="form-control" name="clientCode" id="clientCodeQuery">--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
                     <button type="button" class="btn btn-primary"
                             style="background-color: #17a2b8;width: 100px;height: 38px;padding: 0px"  name="btnQuery" onclick="query()" >
                         <img src="/img/query.png" width="15px">

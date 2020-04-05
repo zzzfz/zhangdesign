@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
+@SuppressWarnings("ALL")
 public class AppraiseCheckController {
 
     @Autowired
@@ -26,9 +27,9 @@ public class AppraiseCheckController {
     @RequestMapping("/checkSelect")
     public String checkSelect(Model model, HttpServletRequest request) {
         String month = request.getParameter("month");
-        String clientCode = request.getParameter("clientCode");
+        String clientName = request.getParameter("clientName");
         model.addAttribute("month", month);
-        model.addAttribute("clientCode", clientCode);
+        model.addAttribute("clientName", clientName);
         return "/jsp/appraise/appraise_operation/appraiseresultscheck";
     }
 
@@ -37,13 +38,13 @@ public class AppraiseCheckController {
     public @ResponseBody
     Object checkList(Model model, HttpServletRequest request){
         String month = request.getParameter("month");
-        String clientCode = request.getParameter("clientCode");
+        String clientName = request.getParameter("clientName");
 
         TCCAppraiseinputExample example = new TCCAppraiseinputExample();
         TCCAppraiseinputExample.Criteria criteria = example.createCriteria();
 
-        if (null != clientCode && !"".equalsIgnoreCase(clientCode)){
-            criteria.andClientcodeEqualTo(clientCode);
+        if (null != clientName && !"".equalsIgnoreCase(clientName)){
+            criteria.andClientnameEqualTo(clientName);
         }
         if (null != month && !"".equalsIgnoreCase(month)){
             criteria.andMonthEqualTo(month);

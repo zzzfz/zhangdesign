@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
+@SuppressWarnings("all")
 public class AppraiseQueryController {
 
     @Autowired
@@ -25,11 +26,9 @@ public class AppraiseQueryController {
     @RequestMapping("/appraiseQuery")
     public String inputSelect(Model model, HttpServletRequest request){
 
-        String clientCode = request.getParameter("clientCode");
         String clientName = request.getParameter("clientName");
         String month = request.getParameter("month");
 
-        model.addAttribute("clientCode",clientCode);
         model.addAttribute("clientName",clientName);
         model.addAttribute("month",month);
 
@@ -41,17 +40,12 @@ public class AppraiseQueryController {
     public @ResponseBody
     Object inputList(Model model, HttpServletRequest request){
 
-        String clientCode = request.getParameter("clientCode");
         String clientName = request.getParameter("clientName");
         String month = request.getParameter("month");
 
         TCCAppraiseinputExample example = new TCCAppraiseinputExample();
         TCCAppraiseinputExample.Criteria criteria = example.createCriteria();
 
-
-        if (null != clientCode && !"".equalsIgnoreCase(clientCode)){
-            criteria.andRouteEqualTo(clientCode);
-        }
         if (null != clientName && !"".equalsIgnoreCase(clientName)){
             criteria.andMonthEqualTo(clientName);
         }

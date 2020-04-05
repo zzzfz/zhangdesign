@@ -14,6 +14,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table-zh-CN.min.js"></script>
     <link href="/css/bootstrap-table.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
@@ -26,6 +27,7 @@
                 url:'${pageContext.request.contextPath}/integralList',
                 type:"GET",
                 uniqueId:"serialnum",
+                locale: 'zh-CN',
                 singleSelect: true,
                 search: true, //搜索
                 pagination: true,   //是否显示分页条
