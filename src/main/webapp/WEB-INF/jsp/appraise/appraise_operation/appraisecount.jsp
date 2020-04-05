@@ -25,12 +25,14 @@
         function appraiseStr() {
             let month = $("#monthStr").val();
             let selFormula = $("#selFormula").val();
+            let selAppraiseWay = $("#selAppraiseWay").val();
             $.ajax({
                 url: '${pageContext.request.contextPath}/appraiseCount',
                 type: 'POST',
                 data: {
                     month : month,
-                    selFormula : selFormula
+                    selFormula : selFormula,
+                    selAppraiseWay : selAppraiseWay
                 },
                 success: function () {
                     $('#modStr').modal('hide');
@@ -72,7 +74,7 @@
                         title: '客户简称',
                         valign: 'middle',
                         sortable: true,
-                        width: 160
+                        width: 60
                     },{
                         field: 'address',
                         title: '经营地址',
@@ -195,21 +197,20 @@
                     </form>
 
                 </div>
-                <%--<div class="modal-body">--%>
-                    <%--<form>--%>
-                        <%--<div class="input-group mb-3">--%>
-                            <%--<div class="input-group-prepend">--%>
-                                <%--<span class="input-group-text">评价方式：</span>--%>
-                            <%--</div>--%>
-                            <%--<select class="form-control" id="selAppraiseWay">--%>
-                                <%--<option value ="请选择">请选择</option>--%>
-                                <%--<option value ="人数">人数</option>--%>
-                                <%--<option value ="人数百分比">人数百分比</option>--%>
-                                <%--<option value ="得分上限下限">得分上限下限</option>--%>
-                            <%--</select>--%>
-                        <%--</div>--%>
-                    <%--</form>--%>
-                <%--</div>--%>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">评价方式：</span>
+                            </div>
+                            <select class="form-control" id="selAppraiseWay">
+                                <option value ="1">人数</option>
+                                <option value ="2">人数百分比</option>
+                                <option value ="3">得分上限下限</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
                 <div class="modal-body">
                     <form>
                         <div class="input-group mb-3">
