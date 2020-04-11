@@ -24,14 +24,16 @@ public class TypeStandardController {
     @ResponseBody
     public List<TCCTypestandard> typeList()throws Exception{
         TCCTypestandardExample example = new TCCTypestandardExample();
-        List<TCCTypestandard>tccTypestandards = tccTypeStandardService.selectByExample(example);
+        List<TCCTypestandard>tccTypestandards
+                = tccTypeStandardService.selectByExample(example);
         return tccTypestandards;
     }
 
 //    添加
     @RequestMapping(value = "/typeAdd",method = RequestMethod.POST)
     @ResponseBody
-    public TCCTypestandard typeAdd(@RequestBody TCCTypestandard tccTypestandard){
+    public TCCTypestandard typeAdd(
+            @RequestBody TCCTypestandard tccTypestandard){
         tccTypestandard.setTypecode(IdUtil.nextId());
         tccTypeStandardService.insert(tccTypestandard);
         return tccTypestandard;
@@ -39,15 +41,18 @@ public class TypeStandardController {
 //    修改
     @RequestMapping(value = "/typeEdit",method = RequestMethod.PUT)
     @ResponseBody
-    public TCCTypestandard typeEdit(@RequestBody TCCTypestandard tccTypestandard){
-        tccTypeStandardService.updateByPrimaryKeySelective(tccTypestandard);
+    public TCCTypestandard typeEdit(
+            @RequestBody TCCTypestandard tccTypestandard){
+        tccTypeStandardService
+                .updateByPrimaryKeySelective(tccTypestandard);
         return tccTypestandard;
     }
 //    删除
     @RequestMapping(value = "/typeDel",method = RequestMethod.DELETE)
     @ResponseBody
     public String typeDel(@RequestBody TCCTypestandard tccTypestandard){
-        tccTypeStandardService.deleteByPrimaryKey(tccTypestandard.getTypecode());
+        tccTypeStandardService.deleteByPrimaryKey(tccTypestandard
+                .getTypecode());
         return "200";
     }
 }

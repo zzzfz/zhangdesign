@@ -25,14 +25,17 @@ public class ProjectProportionController {
     @RequestMapping(value = "/proList",method = RequestMethod.GET)
     @ResponseBody
     public List<TCCProjectproportion> proList() throws Exception{
-        TCCProjectproportionExample example = new TCCProjectproportionExample();
-        List<TCCProjectproportion> tccProjectProportions = tccProjectproportionService.selectByExample(example);
+        TCCProjectproportionExample example
+                = new TCCProjectproportionExample();
+        List<TCCProjectproportion> tccProjectProportions
+                = tccProjectproportionService.selectByExample(example);
         return tccProjectProportions;
     }
 //添加
     @RequestMapping(value = "/proAdd",method = RequestMethod.POST)
     @ResponseBody
-    public TCCProjectproportion proAdd(@RequestBody TCCProjectproportion tccProjectproportion){
+    public TCCProjectproportion proAdd(
+            @RequestBody TCCProjectproportion tccProjectproportion){
         tccProjectproportion.setProjectproportionid(IdUtil.nextId());
         tccProjectproportionService.insert(tccProjectproportion);
         return tccProjectproportion;
@@ -40,15 +43,20 @@ public class ProjectProportionController {
 //修改
     @RequestMapping(value = "/proEdit",method = RequestMethod.PUT)
     @ResponseBody
-    public TCCProjectproportion proEdit(@RequestBody TCCProjectproportion tccProjectproportion){
-        tccProjectproportionService.updateByPrimaryKeySelective(tccProjectproportion);
+    public TCCProjectproportion proEdit(
+            @RequestBody TCCProjectproportion tccProjectproportion){
+        tccProjectproportionService
+                .updateByPrimaryKeySelective(tccProjectproportion);
         return tccProjectproportion;
     }
 //删除
     @RequestMapping(value = "/proDel",method = RequestMethod.DELETE)
     @ResponseBody
-    public String proDel(@RequestBody TCCProjectproportion tccProjectproportion){
-        tccProjectproportionService.deleteByPrimaryKey(tccProjectproportion.getProjectproportionid());
+    public String proDel(
+            @RequestBody TCCProjectproportion tccProjectproportion){
+        tccProjectproportionService
+                .deleteByPrimaryKey(tccProjectproportion
+                        .getProjectproportionid());
         return "200";
     }
 }

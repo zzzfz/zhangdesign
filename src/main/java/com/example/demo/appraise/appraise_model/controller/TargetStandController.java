@@ -29,13 +29,15 @@ public class TargetStandController {
     @ResponseBody
     public List<TCCTargetstand> targetList() throws Exception{
         TCCTargetstandExample example = new TCCTargetstandExample();
-        List<TCCTargetstand> targetStands = tccTargetStandService.selectByExample(example);
+        List<TCCTargetstand> targetStands
+                = tccTargetStandService.selectByExample(example);
         return targetStands;
     }
 //    添加
     @RequestMapping(value = "/targetAdd",method = RequestMethod.POST)
     @ResponseBody
-    public TCCTargetstand targetAdd(@RequestBody TCCTargetstand tccTargetstand){
+    public TCCTargetstand targetAdd(
+            @RequestBody TCCTargetstand tccTargetstand){
         tccTargetstand.setTargetcode(IdUtil.nextId());
         tccTargetStandService.insert(tccTargetstand);
         return tccTargetstand;
@@ -43,23 +45,29 @@ public class TargetStandController {
 //    修改
     @RequestMapping(value = "/targetEdit",method = RequestMethod.PUT)
     @ResponseBody
-    public TCCTargetstand targetEdit(@RequestBody TCCTargetstand tccTargetstand){
-        tccTargetStandService.updateByPrimaryKeySelective(tccTargetstand);
+    public TCCTargetstand targetEdit(
+            @RequestBody TCCTargetstand tccTargetstand){
+        tccTargetStandService
+                .updateByPrimaryKeySelective(tccTargetstand);
         return tccTargetstand;
     }
 //    删除
     @RequestMapping(value = "/targetDel",method = RequestMethod.DELETE)
     @ResponseBody
     public String targetDel(@RequestBody TCCTargetstand tccTargetstand){
-        tccTargetStandService.deleteByPrimaryKey(tccTargetstand.getTargetcode());
+        tccTargetStandService.deleteByPrimaryKey(
+                tccTargetstand.getTargetcode());
         return "200";
     }
 //    删除该指标再指标维护表中的指标比重
-    @RequestMapping(value = "/tarProportionDel",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/tarProportionDel",method
+            = RequestMethod.DELETE)
     @ResponseBody
-    public String tarProportionDel(@RequestBody TCCValuestand tccValuestand){
+    public String tarProportionDel(
+            @RequestBody TCCValuestand tccValuestand){
         TCCValuestandExample example = new TCCValuestandExample();
-        example.createCriteria().andTargetnameEqualTo(tccValuestand.getValuename());
+        example.createCriteria()
+                .andTargetnameEqualTo(tccValuestand.getValuename());
         tccValuestandService.deleteByExample(example);
         return "200";
     }

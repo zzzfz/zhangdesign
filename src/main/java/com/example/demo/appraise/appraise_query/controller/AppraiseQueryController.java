@@ -44,7 +44,8 @@ public class AppraiseQueryController {
         String month = request.getParameter("month");
 
         TCCAppraiseinputExample example = new TCCAppraiseinputExample();
-        TCCAppraiseinputExample.Criteria criteria = example.createCriteria();
+        TCCAppraiseinputExample.Criteria criteria
+                = example.createCriteria();
 
         if (null != clientName && !"".equalsIgnoreCase(clientName)){
             criteria.andMonthEqualTo(clientName);
@@ -52,7 +53,8 @@ public class AppraiseQueryController {
         if (null != month && !"".equalsIgnoreCase(month)){
             criteria.andMonthEqualTo(month);
         }
-        List<TCCAppraiseinput> tccAppraiseinputs = tccAppraiseinputService.selectByExample(example);
+        List<TCCAppraiseinput> tccAppraiseinputs
+                = tccAppraiseinputService.selectByExample(example);
         return tccAppraiseinputs;
     }
 }

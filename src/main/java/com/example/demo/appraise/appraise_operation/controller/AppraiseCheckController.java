@@ -41,7 +41,8 @@ public class AppraiseCheckController {
         String clientName = request.getParameter("clientName");
 
         TCCAppraiseinputExample example = new TCCAppraiseinputExample();
-        TCCAppraiseinputExample.Criteria criteria = example.createCriteria();
+        TCCAppraiseinputExample.Criteria criteria
+                = example.createCriteria();
 
         if (null != clientName && !"".equalsIgnoreCase(clientName)){
             criteria.andClientnameEqualTo(clientName);
@@ -49,14 +50,17 @@ public class AppraiseCheckController {
         if (null != month && !"".equalsIgnoreCase(month)){
             criteria.andMonthEqualTo(month);
         }
-        List<TCCAppraiseinput> tccAppraiseinputs = tccAppraiseinputService.selectByExample(example);
+        List<TCCAppraiseinput> tccAppraiseinputs
+                = tccAppraiseinputService.selectByExample(example);
         return tccAppraiseinputs;
     }
 //    审核
     @RequestMapping(value = "/checkSure",method = RequestMethod.PUT)
     @ResponseBody
-    public TCCAppraiseinput checkSure(@RequestBody TCCAppraiseinput tccAppraiseinput){
-        tccAppraiseinputService.updateByPrimaryKeySelective(tccAppraiseinput);
+    public TCCAppraiseinput checkSure(
+            @RequestBody TCCAppraiseinput tccAppraiseinput){
+        tccAppraiseinputService
+                .updateByPrimaryKeySelective(tccAppraiseinput);
         return tccAppraiseinput;
     }
 }

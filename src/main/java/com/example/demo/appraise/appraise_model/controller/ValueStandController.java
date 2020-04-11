@@ -25,14 +25,16 @@ public class ValueStandController {
     @ResponseBody
     public List<TCCValuestand> valueList() throws Exception {
         TCCValuestandExample example = new TCCValuestandExample();
-        List<TCCValuestand> tccValuestands = tccValueStandService.selectByExample(example);
+        List<TCCValuestand> tccValuestands
+                = tccValueStandService.selectByExample(example);
         return tccValuestands;
     }
 
 //    添加
     @RequestMapping(value = "/valueAdd", method = RequestMethod.POST)
     @ResponseBody
-    public TCCValuestand valueAdd(@RequestBody TCCValuestand tccValuestand) {
+    public TCCValuestand valueAdd(
+            @RequestBody TCCValuestand tccValuestand) {
         tccValuestand.setValuecode(IdUtil.nextId());
         tccValueStandService.insert(tccValuestand);
         return tccValuestand;
@@ -40,7 +42,8 @@ public class ValueStandController {
 //    修改
     @RequestMapping(value = "/valueEdit",method = RequestMethod.PUT)
     @ResponseBody
-    public TCCValuestand valueEdit(@RequestBody TCCValuestand tccValuestand){
+    public TCCValuestand valueEdit(
+            @RequestBody TCCValuestand tccValuestand){
         tccValueStandService.updateByPrimaryKeySelective(tccValuestand);
         return tccValuestand;
     }
@@ -48,7 +51,8 @@ public class ValueStandController {
     @RequestMapping(value = "/valueDel",method = RequestMethod.DELETE)
     @ResponseBody
     public String valueDel(@RequestBody TCCValuestand tccValuestand){
-        tccValueStandService.deleteByPrimaryKey(tccValuestand.getValuecode());
+        tccValueStandService
+                .deleteByPrimaryKey(tccValuestand.getValuecode());
         return "200";
     }
 }

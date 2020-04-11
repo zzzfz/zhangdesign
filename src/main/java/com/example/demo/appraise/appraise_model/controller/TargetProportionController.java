@@ -23,14 +23,17 @@ public class TargetProportionController {
     @RequestMapping(value = "/targetproList",method = RequestMethod.GET)
     @ResponseBody
     public List<TCCTargetproportion> targetproList()throws Exception{
-        TCCTargetproportionExample example = new TCCTargetproportionExample();
-        List<TCCTargetproportion> tccTargetproportions = tccTargetproportionService.selectByExample(example);
+        TCCTargetproportionExample example
+                = new TCCTargetproportionExample();
+        List<TCCTargetproportion> tccTargetproportions
+                = tccTargetproportionService.selectByExample(example);
         return tccTargetproportions;
     }
 //    添加
     @RequestMapping(value = "/targetproAdd",method = RequestMethod.POST)
     @ResponseBody
-    public TCCTargetproportion targetproAdd(@RequestBody TCCTargetproportion tccTargetproportion){
+    public TCCTargetproportion targetproAdd(
+            @RequestBody TCCTargetproportion tccTargetproportion){
         tccTargetproportion.setTargetprocode(IdUtil.nextId());
         tccTargetproportionService.insert(tccTargetproportion);
         return tccTargetproportion;
@@ -38,15 +41,20 @@ public class TargetProportionController {
 //    修改
     @RequestMapping(value = "/targetproEdit",method = RequestMethod.PUT)
     @ResponseBody
-    public TCCTargetproportion targetproEdit(@RequestBody TCCTargetproportion tccTargetproportion){
-        tccTargetproportionService.updateByPrimaryKeySelective(tccTargetproportion);
+    public TCCTargetproportion targetproEdit(
+            @RequestBody TCCTargetproportion tccTargetproportion){
+        tccTargetproportionService
+                .updateByPrimaryKeySelective(tccTargetproportion);
         return tccTargetproportion;
     }
 //    删除
-    @RequestMapping(value = "/targetproDel",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/targetproDel",
+            method = RequestMethod.DELETE)
     @ResponseBody
-    public String targetproDel(@RequestBody TCCTargetproportion tccTargetproportion){
-        tccTargetproportionService.deleteByPrimaryKey(tccTargetproportion.getTargetprocode());
+    public String targetproDel(
+            @RequestBody TCCTargetproportion tccTargetproportion){
+        tccTargetproportionService.deleteByPrimaryKey(
+                tccTargetproportion.getTargetprocode());
         return "200";
     }
 }

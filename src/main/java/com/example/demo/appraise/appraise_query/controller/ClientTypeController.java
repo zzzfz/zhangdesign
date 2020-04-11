@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
+@SuppressWarnings("all")
 public class ClientTypeController {
     @Autowired
     private TCCAppraiseinputService tccAppraiseinputService;
@@ -31,15 +32,17 @@ public class ClientTypeController {
     }
 
 
-//    初始列表
-    @RequestMapping(value = "/clientTypeList", method = RequestMethod.GET)
+//    查询列表
+    @RequestMapping(value = "/clientTypeList",
+            method = RequestMethod.GET)
     public @ResponseBody
     Object clientTypeList(Model model, HttpServletRequest request){
         String humangrade = request.getParameter("humangrde");
         String route = request.getParameter("route");
 
         TCCAppraiseinputExample example = new TCCAppraiseinputExample();
-        TCCAppraiseinputExample.Criteria criteria = example.createCriteria();
+        TCCAppraiseinputExample.Criteria criteria
+                = example.createCriteria();
 
         if (null != humangrade && !"".equalsIgnoreCase(humangrade)){
             criteria.andMonthEqualTo(humangrade);
@@ -48,7 +51,8 @@ public class ClientTypeController {
             criteria.andRouteEqualTo(route);
         }
 
-        List<TCCAppraiseinput> tccAppraiseinputs = tccAppraiseinputService.selectByExample(example);
+        List<TCCAppraiseinput> tccAppraiseinputs
+                = tccAppraiseinputService.selectByExample(example);
         return tccAppraiseinputs;
     }
 

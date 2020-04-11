@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@SuppressWarnings("all")
 public class AppraiseInputController {
 
     @Autowired
@@ -37,7 +38,8 @@ public class AppraiseInputController {
         String route = request.getParameter("route");
 
         TCCAppraiseinputExample example = new TCCAppraiseinputExample();
-        TCCAppraiseinputExample.Criteria criteria = example.createCriteria();
+        TCCAppraiseinputExample.Criteria criteria
+                = example.createCriteria();
 
         if (null != month && !"".equalsIgnoreCase(month)){
             criteria.andMonthEqualTo(month);
@@ -46,17 +48,21 @@ public class AppraiseInputController {
             criteria.andRouteEqualTo(route);
         }
 
-        List<TCCAppraiseinput> tccAppraiseinputs = tccAppraiseinputService.selectByExample(example);
+        List<TCCAppraiseinput> tccAppraiseinputs
+                = tccAppraiseinputService.selectByExample(example);
         return tccAppraiseinputs;
     }
 
 //    评价确认__修改状态
     @RequestMapping(value = "/appraiseSure",method = RequestMethod.PUT)
     @ResponseBody
-    public TCCAppraiseinput appraiseSure(@RequestBody TCCAppraiseinput tccAppraiseinput){
+    public TCCAppraiseinput appraiseSure(
+            @RequestBody TCCAppraiseinput tccAppraiseinput){
         TCCAppraiseinputExample example = new TCCAppraiseinputExample();
-        example.createCriteria().andClientcodeEqualTo(tccAppraiseinput.getClientcode());
-        tccAppraiseinputService.updateByExampleSelective(tccAppraiseinput,example);
+        example.createCriteria().andClientcodeEqualTo(
+                tccAppraiseinput.getClientcode());
+        tccAppraiseinputService
+                .updateByExampleSelective(tccAppraiseinput,example);
         return tccAppraiseinput;
     }
 

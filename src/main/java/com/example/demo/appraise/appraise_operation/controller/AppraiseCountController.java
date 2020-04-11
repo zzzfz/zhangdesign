@@ -61,20 +61,25 @@ public class AppraiseCountController{
             criteria.andRouteEqualTo(routeCon);
         }
 
-        List<TCCAppraiseinput> tccAppraiseinputs = tccAppraiseinputService.selectByExample(example);
+        List<TCCAppraiseinput> tccAppraiseinputs
+                = tccAppraiseinputService.selectByExample(example);
         return tccAppraiseinputs;
     }
 
+//    评价结果计算
     @RequestMapping(value = "/appraiseCount",method = RequestMethod.POST)
     @ResponseBody
     public void AppraiseCount(HttpServletRequest request){
         String month = request.getParameter("month");
         String selFormula = request.getParameter("selFormula");
-        String selAppraiseWay = request.getParameter("selAppraiseWay");
+        String selAppraiseWay
+                = request.getParameter("selAppraiseWay");
 
         TCCAppraiseinputExample example = new TCCAppraiseinputExample();
-        example.createCriteria().andMonthEqualTo(month).andAppraiseEqualTo("已评价");
-        List<TCCAppraiseinput> tccAppraiseinputs = tccAppraiseinputService.selectByExample(example);
+        example.createCriteria().andMonthEqualTo(month)
+                .andAppraiseEqualTo("已评价");
+        List<TCCAppraiseinput> tccAppraiseinputs
+                = tccAppraiseinputService.selectByExample(example);
         Double num = 0.00;
         DecimalFormat df = new DecimalFormat("#.00");
         for (TCCAppraiseinput t :tccAppraiseinputs){
@@ -82,28 +87,38 @@ public class AppraiseCountController{
             Double depend = new Double(t.getDepend());
             TCCSaleExample example1 = new TCCSaleExample();
             example1.createCriteria().andMonthEqualTo(month);
-            Double saleVolume = new Double(tccSaleService.selectByExample(example1).get(0).getSalevolume());
-            Double money = new Double(tccSaleService.selectByExample(example1).get(0).getMoney());
+            Double saleVolume = new Double(tccSaleService
+                    .selectByExample(example1).get(0).getSalevolume());
+            Double money = new Double(tccSaleService
+                    .selectByExample(example1).get(0).getMoney());
             //根据选择的不同公式计算分数
             if (selFormula.equals("1")){
-                num = (credit + depend) * (saleVolume * 0.5) *(money * 0.005);
+                num = (credit + depend) *
+                        (saleVolume * 0.5) *(money * 0.005);
             }else if (selFormula.equals("2")){
-                num = credit * ((saleVolume * money) * 0.5) * (1 + depend);
+                num = credit *
+                        ((saleVolume * money) * 0.5) * (1 + depend);
             }
             t.setAutonum(df.format(num));
             tccAppraiseinputService.updateByPrimaryKeySelective(t);
         }
         //根据选择的不同评分方式选择不同的方式
         TCCAppraiseinputExample ex = new TCCAppraiseinputExample();
-        ex.createCriteria().andMonthEqualTo(month).andAppraiseEqualTo("已评价");
-        List<TCCAppraiseinput> ts = tccAppraiseinputService.selectByExample(ex);
+        ex.createCriteria().
+                andMonthEqualTo(month)
+                .andAppraiseEqualTo("已评价");
+        List<TCCAppraiseinput> ts
+                = tccAppraiseinputService.selectByExample(ex);
         TCCTypestandardExample example2 = new TCCTypestandardExample();
-        List<TCCTypestandard> tccTypestandards = tccTypeStandardService.selectByExample(example2);
+        List<TCCTypestandard> tccTypestandards
+                = tccTypeStandardService.selectByExample(example2);
         if (selAppraiseWay.equals("1")){
             //人数
             int [] manCount = new int[5];
             for (int i = 0; i < 5; i++) {
-                manCount[i] = Integer.valueOf(tccTypestandards.get(i).getMancount());
+                manCount[i]
+                        = Integer.valueOf(tccTypestandards
+                        .get(i).getMancount());
             }
             //给将要分类的客户排序
             Collections.sort(ts, new c());
@@ -111,8 +126,10 @@ public class AppraiseCountController{
             for (int j = 0; j < 5; j++) {
                 for (int i = 0; i < manCount[j]; i++) {
                     if (ts.size() > 0){
-                        ts.get(0).setAutograde(tccTypestandards.get(j).getTypename());
-                        tccAppraiseinputService.updateByPrimaryKeySelective(ts.get(0));
+                        ts.get(0).setAutograde(tccTypestandards
+                                .get(j).getTypename());
+                        tccAppraiseinputService
+                                .updateByPrimaryKeySelective(ts.get(0));
                         ts.remove(0);
                     } else {
                         break;
@@ -123,7 +140,8 @@ public class AppraiseCountController{
             //人数百分比
             double [] manCountPer = new double[5];
             for (int i = 0; i < 5; i++) {
-                manCountPer[i] = new Double(tccTypestandards.get(i).getMancountper()) * 0.01;
+                manCountPer[i] = new Double(tccTypestandards
+                        .get(i).getMancountper()) * 0.01;
             }
             //给将要分类的客户排序
             Collections.sort(ts, new c());
@@ -131,15 +149,18 @@ public class AppraiseCountController{
             //1.计算各百分比人数
             int [] c = new int[5];
             for (int i = 0; i < 5; i++) {
-                c[i] = new Double(Math.ceil(manCountPer[i] * ts.size())).intValue();
+                c[i] = new Double(Math.ceil(manCountPer[i]
+                        * ts.size())).intValue();
             }
             //2.为已排序的客户分类
             //为已排序的客户分类
             for (int j = 0; j < 5; j++) {
                 for (int i = 0; i < c[j]; i++) {
                     if (ts.size() > 0){
-                        ts.get(0).setAutograde(tccTypestandards.get(j).getTypename());
-                        tccAppraiseinputService.updateByPrimaryKeySelective(ts.get(0));
+                        ts.get(0).setAutograde(tccTypestandards
+                                .get(j).getTypename());
+                        tccAppraiseinputService
+                                .updateByPrimaryKeySelective(ts.get(0));
                         ts.remove(0);
                     } else {
                         break;
@@ -151,11 +172,15 @@ public class AppraiseCountController{
             for (TCCAppraiseinput t : ts){
                 Double autoNum = new Double(t.getAutonum());
                 for (int i = 0; i < tccTypestandards.size(); i++) {
-                    Double up = new Double(tccTypestandards.get(i).getUpperLimit());
-                    Double down = new Double(tccTypestandards.get(i).getDownLimit());
+                    Double up = new Double(tccTypestandards.get(i)
+                            .getUpperLimit());
+                    Double down = new Double(tccTypestandards.get(i)
+                            .getDownLimit());
                     if (autoNum > down && autoNum <= up){
-                        t.setAutograde(tccTypestandards.get(i).getTypename());
-                        tccAppraiseinputService.updateByPrimaryKeySelective(t);
+                        t.setAutograde(tccTypestandards.get(i)
+                                .getTypename());
+                        tccAppraiseinputService
+                                .updateByPrimaryKeySelective(t);
                         break;
                     }
                 }
